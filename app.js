@@ -14,20 +14,21 @@ var game = {
 }
 game.currentPlayer = game.player1
     //Top Secret Text
-var secretText = $('#topSecretDoc p').text();
+var secretText = $('#topSecretDoc').text();
     //Input Text
 var inputText = getText();
     //Player 1 Score
-var p1score = $('#game.player1.score')
+var p1score = $('#game.player1.score').val()
     //Player 2 Score
-var p2score = $('#game.player2.score')
+var p2score = $('#game.player2.score').val()
 
 var timerTime = setInterval(function(){game.timer.count = game.timer.count + 1}, 1000)
 
 //MINIONS//
   //Function that replaces the text in the secretText field with something from the secretDocs array.
   function replaceLeak(){
-    secretText = game.secretDocs[1]
+    // secretText = game.secretDocs[1]
+    secretText = $('#topSecretDoc').text(game.secretDocs[1]);
   }
 
 
@@ -53,6 +54,8 @@ function compareText(x , y) {
   //Function that increases score upon successful match.
 function increaseScore() {
     game.currentPlayer.score += 1
+    $('#player1score').text=game.player1.score
+    $('#player2score').text=game.player2.score
 }
 
   // Function that switches turns:
@@ -77,21 +80,6 @@ function reset() {
       console.log('One is not Snowden')
     }
   }
-
-//Mama Function. Executes a family of functions that compares the two bodies of text, increases score for the current player if necessary, switches turns, checks to see who the winner is, and declares them.
-function processTurn() {
-    if (compareText(inputText, secretText)) {
-        increaseScore()
-        console.log('Match!')
-        checkScore()
-    } else {
-        console.log('Nope!')
-        switchTurn()
-    }
-
-    $('#inputText').val('')
-
-}
   //FISHER YATES SHUFFLE
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -111,7 +99,24 @@ function shuffle(array) {
 
   return array;
 }
-//Function
+//Mama Function. Executes a family of functions that compares the two bodies of text, increases score for the current player if necessary, switches turns, checks to see who the winner is, and declares them.
+function processTurn() {
+    if (compareText(inputText, secretText)) {
+        shuffle(game.secretDocs)
+        replaceLeak()
+        increaseScore()
+        console.log('Match!')
+        checkScore()
+    } else {
+        console.log('Nope!')
+        switchTurn()
+    }
+
+    $('#inputText').val('')
+
+}
+
+//New Function
 
 // Event Listeners
 $('#resetBtn').on('click', reset);
