@@ -22,14 +22,30 @@ var p1score = game.player1.score
     //Player 2 Score
 var p2score = game.player2.score
 
-var timerTime = setInterval(function(){
-  game.timer.count = game.timer.count + 1
-  console.log(game.timer.count)
-  $('#timer').text(game.timer.count)
-}, 1000)
-
+var timerTime = null //This will be assigned in gameInit() below...
 
 //MINIONS//
+
+  function stopTimer() {
+    if(timerTime){
+      clearInterval(timerTime)
+    }
+  }
+
+  function resetTimer() {
+    game.timer.count = 0
+    $('#timer').text(game.timer.count)
+  }
+
+  function startTimer() {
+    stopTimer()
+    timerTime = setInterval(function(){
+      game.timer.count = game.timer.count + 1
+      console.log(game.timer.count)
+      $('#timer').text(game.timer.count)
+    }, 1000)
+  }
+
   //Function that replaces the text in the secretText field with something from the secretDocs array.
   function replaceLeak(){
     // secretText = game.secretDocs[1]
@@ -79,7 +95,7 @@ function reset() {
     game.player2.score = 0;
     $('#player1score').text(game.player1.score)
     $('#player2score').text(game.player2.score)
-    console.log('Works!')
+    console.log('Reset!')
 }
   //Function that checks to see if either player score has reached 10.
   function checkScore1(p1){
@@ -129,18 +145,36 @@ function processTurn() {
     $('#inputText').val('')
 
 }
-
+function gameInit(){
+  shuffle(game.secretDocs)
+  replaceLeak()
+  resetTimer()
+  startTimer()
+}
 //New Function
 
 // Event Listeners
 $('#resetBtn').on('click', reset);
 //Event listener for "Leak!" button.
-$('#leakBtn').on('click' , getText);
-$('#leakBtn').on('click' , processTurn);
-$('#strtBtn').on('click' , reset);
+$('#leakBtn').on('click', getText);
+$('#leakBtn').on('click', processTurn);
+$('#strtBtn').on('click', reset);
+$('#strtBtn').on('click', gameInit);
+
+$('#strtBtn').on('click', function() {
+  $(this).toggleClass('stop')
+  $(this).toggleClass('start')
+  if($(this).hasClass('stop')) {
+
+  }
 
 
+  reset()
+  gameInit()
+})
 
+
+// $('#textInput').is(":focus")
 
 //TEST functions
 
