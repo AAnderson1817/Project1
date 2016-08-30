@@ -7,7 +7,7 @@ var game = {
     player2: {
         score: 0
     },
-    secretDocs: ["1st Leak Here", "Second Leak Here", "Third Leak Here","Forth Leak Here","Fifth Leak Here","Sixth Leak Here","Seventh Leak Here","Eigth Leak Here","Ninth Leak Here"],
+    secretDocs: ["Dale Gribble: 221-456-7152", "Clinton.exe (function getInfo(x){...}", "They're taking the Hobbits to Isengard!","Po ta toes. Po ta toes.","You're a mean one, Mr. Grinch","I wanna dance with somebody. I wanna feel the heat with somebody. Yeah, I wanna dance with somebody. With somebody who loves me.","These are not the files you're looking for","Minimum Viable Product"],
     timer: {
         count: 0
     },
@@ -22,10 +22,10 @@ var p1score = game.player1.score
     //Player 2 Score
 var p2score = game.player2.score
 
-var timerTime = setInterval(function(){
-  game.timer.count = game.timer.count + 1
-  console.log(game.timer.count)
-}, 1000)
+//var timerTime = setInterval(function(){
+  //game.timer.count = game.timer.count + 1
+  //console.log(game.timer.count)
+//}, 1000)
 
 
 //MINIONS//
@@ -78,11 +78,15 @@ function reset() {
     game.player2.score = 0;
 }
   //Function that checks to see if either player score has reached 10.
-  function checkScore(p1){
+  function checkScore1(p1){
     if (game.player1.score == 10) {
       alert('One is Snowden!')
-    }else {
-      console.log('One is not Snowden')
+    }
+  }
+  //P2 checkScore
+  function checkScore2(p1){
+    if (game.player2.score == 10) {
+      alert('Two is Snowden!')
     }
   }
   //FISHER YATES SHUFFLE
@@ -111,7 +115,8 @@ function processTurn() {
         replaceLeak()
         increaseScore()
         console.log('Match!')
-        checkScore()
+        checkScore1()
+        checkScore2()
     } else {
         console.log('Nope!')
         switchTurn()

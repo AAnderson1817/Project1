@@ -27,7 +27,7 @@ h2{
   padding-left:5px;
 }
 #container{
-  height:600px;
+  height:450px;
   width:600px;
   border: 1px solid black;
   margin:0 auto;
@@ -56,6 +56,28 @@ input{
 #leakBtn{
   height:25px;
   width:100px;
-  color: blue;
-  background-color:black;
+  font-weight:bold;
+  color: white;
+  background-color:blue;
+}
+#resetBtn{
+  height:25px;
+  width:100px;
+  font-weight:bold;
+  color: white;
+  background-color:red;
+}
+#strtBtn{
+  display:inline-block;
+  height:50px;
+  width:100px;
+  color:white;
+  font-weight:bold;
+  background-color:green;
+  margin:0 auto;
+  text-align:center;
+}
+#textInput{
+  height:75px;
+  width:50%;
 }
