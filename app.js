@@ -22,10 +22,11 @@ var p1score = game.player1.score
     //Player 2 Score
 var p2score = game.player2.score
 
-//var timerTime = setInterval(function(){
-  //game.timer.count = game.timer.count + 1
-  //console.log(game.timer.count)
-//}, 1000)
+var timerTime = setInterval(function(){
+  game.timer.count = game.timer.count + 1
+  console.log(game.timer.count)
+  $('#timer').text(game.timer.count)
+}, 1000)
 
 
 //MINIONS//
