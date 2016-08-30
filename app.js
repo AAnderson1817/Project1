@@ -15,15 +15,14 @@ var game = {
 game.currentPlayer = game.player1
     //Top Secret Text
 var secretText = $('#topSecretDoc p').text();
-
-//Input Text
+    //Input Text
 var inputText = getText();
+    //Player 1 Score
+var p1score = $('#player1score').text();
+    //Player 2 Score
+var p2score = $('#player2score').text();
 
-//var inputText= $('#textInput').val();
-// $('#textInput').on('keyup', function() {
-//     inputText = $('#textInput').val(); // <----reassigns inputText with each release of the key, thereby updating the value.
-// })
-
+var Timer = 0;
 
 //MINIONS//
   //Function that retrives the text value.
@@ -40,6 +39,10 @@ function compareText(x , y) {
         return false;
     }
 }
+
+ function timeSecond(){
+   game.timer.count +=1
+ }
 
   //Function that increases score upon successful match.
 function increaseScore() {
@@ -77,7 +80,7 @@ function processTurn() {
 //Function
 
 // Event Listeners
-
+$('#resetBtn').on('click', reset);
 //Event listener for "Leak!" button.
 $('#leakBtn').on('click' , getText);
 $('#leakBtn').on('click', processTurn);
