@@ -22,7 +22,7 @@ var p1score = $('#player1score').text();
     //Player 2 Score
 var p2score = $('#player2score').text();
 
-var Timer = 0;
+var timerTime = setInterval(function(){game.timer.count = game.timer.count + 1}, 1000)
 
 //MINIONS//
   //Function that retrives the text value.
@@ -40,9 +40,9 @@ function compareText(x , y) {
     }
 }
 
- function timeSecond(){
-   game.timer.count +=1
- }
+ //function timeSecond(){
+   //game.timer.count +=1
+ //}
 
   //Function that increases score upon successful match.
 function increaseScore() {
