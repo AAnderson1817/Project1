@@ -76,6 +76,9 @@ function switchTurn() {
 function reset() {
     game.player1.score = 0;
     game.player2.score = 0;
+    $('#player1score').text(game.player1.score)
+    $('#player2score').text(game.player2.score)
+    console.log('Works!')
 }
   //Function that checks to see if either player score has reached 10.
   function checkScore1(p1){
