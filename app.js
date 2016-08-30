@@ -18,17 +18,22 @@ var secretText = $('#topSecretDoc').text();
     //Input Text
 var inputText = getText();
     //Player 1 Score
-var p1score = $('#game.player1.score').val()
+var p1score = game.player1.score
     //Player 2 Score
-var p2score = $('#game.player2.score').val()
+var p2score = game.player2.score
 
-var timerTime = setInterval(function(){game.timer.count = game.timer.count + 1}, 1000)
+var timerTime = setInterval(function(){
+  game.timer.count = game.timer.count + 1
+  console.log(game.timer.count)
+}, 1000)
+
 
 //MINIONS//
   //Function that replaces the text in the secretText field with something from the secretDocs array.
   function replaceLeak(){
     // secretText = game.secretDocs[1]
-    secretText = $('#topSecretDoc').text(game.secretDocs[1]);
+    $('#topSecretDoc').text(game.secretDocs[1]);
+    secretText = game.secretDocs[1]
   }
 
 
@@ -54,8 +59,8 @@ function compareText(x , y) {
   //Function that increases score upon successful match.
 function increaseScore() {
     game.currentPlayer.score += 1
-    $('#player1score').text=game.player1.score
-    $('#player2score').text=game.player2.score
+    $('#player1score').text(game.player1.score)
+    $('#player2score').text(game.player2.score)
 }
 
   // Function that switches turns:
