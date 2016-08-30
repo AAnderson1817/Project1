@@ -7,7 +7,7 @@ var game = {
     player2: {
         score: 0
     },
-    secretDocs: ["Dale Gribble: 221-456-7152", "Clinton.exe (function getInfo(x){...}", "They're taking the Hobbits to Isengard!","Po ta toes. Po ta toes.","You're a mean one, Mr. Grinch","I wanna dance with somebody. I wanna feel the heat with somebody. Yeah, I wanna dance with somebody. With somebody who loves me.","These are not the files you're looking for","Minimum Viable Product"],
+    secretDocs: ["Dale Gribble: 221-456-7152", "Clinton.exe (function getInfo(x){...}", "They're taking the Hobbits to Isengard!","Po ta toes. Po ta toes.","You're a mean one, Mr. Grinch.","I wanna dance with somebody. I wanna feel the heat with somebody. Yeah, I wanna dance with somebody. With somebody who loves me.","These are not the files you're looking for.","Minimum Viable Product."],
     timer: {
         count: 0
     },
@@ -132,8 +132,8 @@ function processTurn() {
 $('#resetBtn').on('click', reset);
 //Event listener for "Leak!" button.
 $('#leakBtn').on('click' , getText);
-$('#leakBtn').on('click', processTurn);
-
+$('#leakBtn').on('click' , processTurn);
+$('#strtBtn').on('click' , reset);
 
 
 
