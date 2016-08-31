@@ -7,7 +7,7 @@ var game = {
     player2: {
         score: 0
     },
-    secretDocs: ["Dale Gribble: 221-456-7152", "Clinton.exe (function getInfo(x){...}", "They're taking the Hobbits to Isengard!","Po ta toes. Po ta toes.","You're a mean one, Mr. Grinch.","I wanna dance with somebody. I wanna feel the heat with somebody. Yeah, I wanna dance with somebody. With somebody who loves me.","These are not the files you're looking for.","Minimum Viable Product."],
+    secretDocs: ["Dale Gribble: 221-456-7152", "Clinton.exe (function getInfo(x){...}", "They're taking the Hobbits to Isengard!","Po ta toes. Po ta toes.","You're a mean one, Mr. Grinch.","I wanna dance with somebody. I wanna feel the heat with somebody. Yeah, I wanna dance with somebody. With somebody who loves me.","These are not the files you're looking for.","Minimum Viable Product.","The quick brown fox jumps over the complacent programmer."],
     timer: {
         count: 0
     },
@@ -52,7 +52,18 @@ var timerTime = null //This will be assigned in gameInit() below...
     $('#topSecretDoc').text(game.secretDocs[1]);
     secretText = game.secretDocs[1]
   }
-
+  //Function that, when the enter key is hit in the textarea, run processTurn.
+  //PROBLEM--When I hit enter, it clears to a new line, which bugs a successful match. I need to prevent the text field from registering enter, while allowing for it to trigger the event processTurn.
+$('#textInput').bind("enterKey",function(e){
+console.log("Enter");
+processTurn();
+});
+$('#textInput').keyup(function(e){
+if(e.keyCode == 13)
+{
+  $(this).trigger("enterKey");
+}
+});
 
   //Function that retrives the text value.
 function getText() {
@@ -130,6 +141,7 @@ function shuffle(array) {
 }
 //Mama Function. Executes a family of functions that compares the two bodies of text, increases score for the current player if necessary, switches turns, checks to see who the winner is, and declares them.
 function processTurn() {
+        getText()
     if (compareText(inputText, secretText)) {
         shuffle(game.secretDocs)
         replaceLeak()
@@ -145,6 +157,7 @@ function processTurn() {
     $('#inputText').val('')
 
 }
+//Function that initializes metadata and selects a random leak to display first.
 function gameInit(){
   shuffle(game.secretDocs)
   replaceLeak()
