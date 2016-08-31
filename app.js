@@ -9,7 +9,7 @@ var game = {
     },
     secretDocs: ["Dale Gribble: 221-456-7152", "Clinton.exe (function getInfo(x){...}", "They're taking the Hobbits to Isengard!","Po ta toes. Po ta toes.","You're a mean one, Mr. Grinch.","I wanna dance with somebody. I wanna feel the heat with somebody. Yeah, I wanna dance with somebody. With somebody who loves me.","These are not the files you're looking for.","Minimum Viable Product.","The quick brown fox jumps over the complacent programmer."],
     timer: {
-        count: 0
+        count: 60
     },
 }
 game.currentPlayer = game.player1
@@ -33,14 +33,14 @@ var timerTime = null //This will be assigned in gameInit() below...
   }
 
   function resetTimer() {
-    game.timer.count = 0
+    game.timer.count = 60
     $('#timer').text(game.timer.count)
   }
 
   function startTimer() {
     stopTimer()
     timerTime = setInterval(function(){
-      game.timer.count = game.timer.count + 1
+      game.timer.count = game.timer.count - 1
       console.log(game.timer.count)
       $('#timer').text(game.timer.count)
     }, 1000)
@@ -139,6 +139,21 @@ function shuffle(array) {
 
   return array;
 }
+  //Function that checks to see if the timer has reached 0. If yes, display a message, "Switch!", switch to player 2, reset the time to 60.
+  //Function that checks if timer is 0.
+  function checkTimer(x){
+    if (x==0) {
+      alert:("Switch!")
+      switchTurn()
+      clearInterval(timerTime);
+      game.timer.count=60
+
+    }
+}
+  //Function that splits inputText and secretText into an array of characters, then, compares the value of each array position. If false, underline the text red.
+function errorText(str1, str2){
+
+}
 //Mama Function. Executes a family of functions that compares the two bodies of text, increases score for the current player if necessary, switches turns, checks to see who the winner is, and declares them.
 function processTurn() {
         getText()
@@ -151,7 +166,6 @@ function processTurn() {
         checkScore2()
     } else {
         console.log('Nope!')
-        switchTurn()
     }
 
     $('#inputText').val('')
