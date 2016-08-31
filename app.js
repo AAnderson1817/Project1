@@ -9,7 +9,7 @@ var game = {
     },
     secretDocs: ["Dale Gribble: 221-456-7152", "Clinton.exe (function getInfo(x){...}", "They're taking the Hobbits to Isengard!","Po ta toes. Po ta toes.","You're a mean one, Mr. Grinch.","I wanna dance with somebody. I wanna feel the heat with somebody. Yeah, I wanna dance with somebody. With somebody who loves me.","These are not the files you're looking for.","Minimum Viable Product.","The quick brown fox jumps over the complacent programmer."],
     timer: {
-        count: 60
+        count: 30
     },
 }
 game.currentPlayer = game.player1
@@ -33,7 +33,7 @@ var timerTime = null //This will be assigned in gameInit() below...
   }
 
   function resetTimer() {
-    game.timer.count = 60
+    game.timer.count = 30
     $('#timer').text(game.timer.count)
   }
 
@@ -43,6 +43,13 @@ var timerTime = null //This will be assigned in gameInit() below...
       game.timer.count = game.timer.count - 1
       console.log(game.timer.count)
       $('#timer').text(game.timer.count)
+      if (game.timer.count == 0) {
+        clearInterval(timerTime);
+        alert("Switch!")
+        switchTurn()
+        game.timer.count=30
+        $('#timer').text(game.timer.count)
+      }
     }, 1000)
   }
 
@@ -52,22 +59,23 @@ var timerTime = null //This will be assigned in gameInit() below...
     $('#topSecretDoc').text(game.secretDocs[1]);
     secretText = game.secretDocs[1]
   }
-  //Function that, when the enter key is hit in the textarea, run processTurn.
-  //PROBLEM--When I hit enter, it clears to a new line, which bugs a successful match. I need to prevent the text field from registering enter, while allowing for it to trigger the event processTurn.
-$('#textInput').bind("enterKey",function(e){
-console.log("Enter");
-processTurn();
-});
-$('#textInput').keyup(function(e){
-if(e.keyCode == 13)
-{
-  $(this).trigger("enterKey");
-}
-});
+
+var $textInput = $('#textInput')
+$textInput.on('keyup', function(e) {
+  e = e || event;
+  if (e.keyCode === 13) {
+	// start your submit function
+	console.log(this.value)
+  processTurn()
+	// this.value = ""
+  }
+  return true;
+})
 
   //Function that retrives the text value.
 function getText() {
     inputText = $('#textInput').val()
+    inputText=inputText.substring(0, inputText.length - 1);
     return inputText
 }
 
@@ -80,10 +88,6 @@ function compareText(x , y) {
     }
 }
 
- //function timeSecond(){
-   //game.timer.count +=1
- //}
-
   //Function that increases score upon successful match.
 function increaseScore() {
     game.currentPlayer.score += 1
@@ -95,17 +99,19 @@ function increaseScore() {
 function switchTurn() {
     if (game.currentPlayer == game.player1) {
         game.currentPlayer = game.player2
+
     } else {
         game.currentPlayer = game.player1
     }
 }
 
-// Reset Game:
+//Reset Game:
 function reset() {
     game.player1.score = 0;
     game.player2.score = 0;
     $('#player1score').text(game.player1.score)
     $('#player2score').text(game.player2.score)
+    game.currentPlayer = game.player1
     console.log('Reset!')
 }
   //Function that checks to see if either player score has reached 10.
@@ -115,11 +121,21 @@ function reset() {
     }
   }
   //P2 checkScore
-  function checkScore2(p1){
+  function checkScore2(p2){
     if (game.player2.score == 10) {
       alert('Two is Snowden!')
     }
   }
+  //Function that checks to see if the timer has reached 0. If yes, display a message, "Switch!", switch to player 2, reset the time to 60.
+  //Function that checks if timer is 0.
+  function checkTimer(){
+    if (game.timer.count==1) {
+      alert("Switch!")
+      switchTurn()
+      clearInterval(timerTime);
+      game.timer.count=30
+    }
+}
   //FISHER YATES SHUFFLE
 function shuffle(array) {
   var currentIndex = array.length, temporaryValue, randomIndex;
@@ -139,17 +155,6 @@ function shuffle(array) {
 
   return array;
 }
-  //Function that checks to see if the timer has reached 0. If yes, display a message, "Switch!", switch to player 2, reset the time to 60.
-  //Function that checks if timer is 0.
-  function checkTimer(x){
-    if (x==0) {
-      alert:("Switch!")
-      switchTurn()
-      clearInterval(timerTime);
-      game.timer.count=60
-
-    }
-}
   //Function that splits inputText and secretText into an array of characters, then, compares the value of each array position. If false, underline the text red.
 function errorText(str1, str2){
 
@@ -164,11 +169,14 @@ function processTurn() {
         console.log('Match!')
         checkScore1()
         checkScore2()
+        $('#textInput').val('')
     } else {
         console.log('Nope!')
+        inputText = $('#textInput').val()
+        $('#textInput').val(inputText.substring(0, inputText.length - 1))
     }
 
-    $('#inputText').val('')
+
 
 }
 //Function that initializes metadata and selects a random leak to display first.
@@ -177,15 +185,18 @@ function gameInit(){
   replaceLeak()
   resetTimer()
   startTimer()
+  checkTimer()
+
 }
 //New Function
 
 // Event Listeners
+
 $('#resetBtn').on('click', reset);
 //Event listener for "Leak!" button.
 $('#leakBtn').on('click', getText);
 $('#leakBtn').on('click', processTurn);
-$('#strtBtn').on('click', reset);
+//$('#strtBtn').on('click', reset);
 $('#strtBtn').on('click', gameInit);
 
 $('#strtBtn').on('click', function() {
@@ -194,12 +205,9 @@ $('#strtBtn').on('click', function() {
   if($(this).hasClass('stop')) {
 
   }
-
-
-  reset()
+  //reset()
   gameInit()
 })
-
 
 // $('#textInput').is(":focus")
 
