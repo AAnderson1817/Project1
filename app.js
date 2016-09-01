@@ -214,3 +214,5 @@ $('#strtBtn').on('click', function() {
 //TEST functions
 
 game.secretDocs[Math.round(Math.random*game.secretDocs.length)]
+
+$('#instructions').modal()

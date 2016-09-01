@@ -1,7 +1,9 @@
 body{
   background-color: #000;
   font-family: courier, monospace;
-  color: #fff;
+  color: rgb(26,255,128);
+  background-image: url('./console.jpg');
+  background-size: cover;
 }
 h1{
   margin:0 auto;
@@ -23,12 +25,13 @@ h1{
   font-size: 50px;
 }
 #container{
-  height:600px;
-  width:600px;
+  height:500px;
+  width:550px;
 }
 #topSecretDoc{
-  border:1px solid #eaeaea;
   font-size: 20px;
+  height:400px;
+  padding:10px;
 }
 #textInput{
   font-family: courier, monospace;
@@ -38,12 +41,17 @@ h1{
 border: 1px solid black;
 font-family: courier, monospace;
 }
+#instructions{
+  color: rgb(26,255,128);
+}
 input{
 }
 
 #resetBtn{
   font-family: courier, monospace;
+  border-radius:50%;
 }
 #strtBtn{
   font-family: courier, monospace;
+  border-radius:50%;
 }
