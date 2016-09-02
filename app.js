@@ -7,9 +7,9 @@ var game = {
     player2: {
         score: 0
     },
-    secretDocs: ["Dale Gribble: 221-456-7152", "Clinton.exe (function getInfo(x){...}", "They're taking the Hobbits to Isengard!","Po ta toes. Po ta toes.","You're a mean one, Mr. Grinch.","I wanna dance with somebody. I wanna feel the heat with somebody. Yeah, I wanna dance with somebody. With somebody who loves me.","These are not the files you're looking for.","Minimum Viable Product.","The quick brown fox jumps over the complacent programmer."],
+    secretDocs: ["Dale Gribble: 221-456-7152", "(function getInfo(x){...//ERROR?}", "They're taking the Hobbits to Isengard!","Po ta toes. Po ta toes.","You're a mean one, Mr. Grinch.","I wanna dance with somebody. I wanna feel the heat with somebody. Yeah, I wanna dance with somebody. With somebody who loves me.","These are not the files you're looking for.","Minimum Viable Product.","The quick brown fox jumps over the complacent programmer.","Stop. Who would cross the Bridge of Death must answer me these questions three, ere the other side he see.","Goodness gracious, Great Balls of Fire!","First shalt thou take out the Holy Pin. Then shalt thou count to three, no more, no less. Three shall be the number thou shalt count, and the number of the counting shall be three. Four shalt thou not count, neither count thou two, excepting that thou then proceed to three. Five is right out.","I am, and this is my trusty servant Patsy. We have ridden the length and breadth of the land in search of knights who will join me in my court at Camelot. I must speak with your lord and master.","This new learning amazes me, Sir Bedevere. Explain again how sheep's bladders may be employed to prevent earthquakes.","You don't frighten us, English pig dogs. Go and boil your bottoms, you sons of a silly person. I blow my nose at you, so-called 'Arthur King', you and all your silly English K-nig-hts."],
     timer: {
-        count: 30
+        count: 60
     },
 }
 game.currentPlayer = game.player1
@@ -24,6 +24,14 @@ var p2score = game.player2.score
 
 var timerTime = null //This will be assigned in gameInit() below...
 
+var nopeMp3 = new Audio("./laugh.mp3")
+
+var yesMp3 = new Audio("./yes.mp3")
+
+var piano = new Audio("./mysterypiano.mp3")
+
+var fatality = new Audio("./fatality.mp3")
+
 //MINIONS//
 
   function stopTimer() {
@@ -33,7 +41,7 @@ var timerTime = null //This will be assigned in gameInit() below...
   }
 
   function resetTimer() {
-    game.timer.count = 30
+    game.timer.count = 60
     $('#timer').text(game.timer.count)
   }
 
@@ -45,9 +53,9 @@ var timerTime = null //This will be assigned in gameInit() below...
       $('#timer').text(game.timer.count)
       if (game.timer.count == 0) {
         clearInterval(timerTime);
-        alert("Switch!")
+        $('#topSecretDoc').text("SWITCH PLAYERS")
         switchTurn()
-        game.timer.count=30
+        game.timer.count=60
         $('#timer').text(game.timer.count)
       }
     }, 1000)
@@ -59,7 +67,10 @@ var timerTime = null //This will be assigned in gameInit() below...
     $('#topSecretDoc').text(game.secretDocs[1]);
     secretText = game.secretDocs[1]
   }
-
+//Function that clears the input field.
+function clearInput(){
+  $('#textInput').val("")
+}
 var $textInput = $('#textInput')
 $textInput.on('keyup', function(e) {
   e = e || event;
@@ -84,6 +95,7 @@ function compareText(x , y) {
     if (x == y) {
         return true;
     } else {
+        nopeMp3.play()
         return false;
     }
 }
@@ -93,6 +105,7 @@ function increaseScore() {
     game.currentPlayer.score += 1
     $('#player1score').text(game.player1.score)
     $('#player2score').text(game.player2.score)
+    yesMp3.play()
 }
 
   // Function that switches turns:
@@ -117,13 +130,15 @@ function reset() {
   //Function that checks to see if either player score has reached 10.
   function checkScore1(p1){
     if (game.player1.score == 10) {
-      alert('One is Snowden!')
+      fatality.play()
+      $('#topSecretDoc').text("Winner winner, chicken dinner. (1)")
     }
   }
   //P2 checkScore
   function checkScore2(p2){
     if (game.player2.score == 10) {
-      alert('Two is Snowden!')
+      fatality.play()
+      $('#topSecretDoc').text("Winner winner, chicken dinner. (2)")
     }
   }
   //Function that checks to see if the timer has reached 0. If yes, display a message, "Switch!", switch to player 2, reset the time to 60.
@@ -198,6 +213,7 @@ $('#leakBtn').on('click', getText);
 $('#leakBtn').on('click', processTurn);
 //$('#strtBtn').on('click', reset);
 $('#strtBtn').on('click', gameInit);
+$('#strtBtn').on('click', clearInput)
 
 $('#strtBtn').on('click', function() {
   $(this).toggleClass('stop')

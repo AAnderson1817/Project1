@@ -9,20 +9,22 @@ h1{
   margin:0 auto;
   font-size:60px
 }
-
+#headrow{
+  padding-top:195px;
+}
 #timer{
   margin:0 auto;
-  font-size:50px;
-  color:red;
+  font-size:35px;
+  color:#eaeaea;
 }
 #player1score{
   font-family: courier, monospace;
-  font-size: 50px;
+  font-size: 30px;
 
 }
 #player2score{
   font-family: courier, monospace;
-  font-size: 50px;
+  font-size: 30px;
 }
 #container{
   height:500px;
@@ -30,28 +32,48 @@ h1{
 }
 #topSecretDoc{
   font-size: 20px;
-  height:400px;
+  height:350px;
   padding:10px;
 }
 #textInput{
   font-family: courier, monospace;
   font-size:16px;
+  background-color:black;
 }
 #gameInfo{
 border: 1px solid black;
 font-family: courier, monospace;
+font-size:20px;
 }
 #instructions{
+  color: black;
+  font-size:20px;
+}
+#instructionsmodal{
   color: rgb(26,255,128);
+  background-color:black;
+  font-size:20px;
+}
+#modaltitle{
+  color: rgb(26,255,128);
+  background-color:black;
+  font-size:20px;
+}
+#audio{
+  display:none;
 }
 input{
 }
 
 #resetBtn{
   font-family: courier, monospace;
-  border-radius:50%;
+  border-radius:10%;
+  padding-top:5px;
+  background-color: #eaeaea;
+  color:black;
 }
 #strtBtn{
   font-family: courier, monospace;
-  border-radius:50%;
+  border-radius:10%;
+  padding-top:5px;
 }

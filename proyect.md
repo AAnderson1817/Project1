@@ -1,4 +1,4 @@
-# Snowden Simulator: Type or Die
+# Mysterious Console: Type or Die
 
 ## Objective: You are a prospective whistleblower working for the NSA, and a huge fan of Edward Snowden. He's the tops. Now that he's been exiled, his work unfinished, you have taken it upon yourself to reveal to the American people, nay, THE WORLD, that there is much more going on under the hood at their local intelligence agency. Using guile, cunning, and quick fingers, you are tasked with leaking as much information to The Guardian as possible without getting caught by your superiors. Remember, be accurate! It's bad enough you might be charged for treason--let's not add libel to your laundry list of potential legal troubles.
 

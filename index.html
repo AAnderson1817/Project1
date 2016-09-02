@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Snowden Simulator</title>
+    <title>Terminus Terminal</title>
     <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -17,22 +17,26 @@
 
   </head>
   <body>
+
+    <audio controls autoplay loop id="audio">
+     <source src="./mysterypiano.mp3" type="audio/mp3">
+   </audio>
+
     <div class="container" id="container">
 
         <div class="row head">
-                <h1 class="col-md-12">Snowden Simulator</h1>
 
 
-            <div class="col-md-12 headertext">
+            <div class="col-md-12 headertext" id="headrow">
 
-              <div class="col-md-4" id='player1score'>0</div>
+              <div class="col-md-2" id='player1score'>0</div>
 
-              <div class="col-md-4" id='player2score'>0</div>
+              <div class="col-md-2" id='player2score'>0</div>
 
-              <div class="col-md-4" id="timer">30</div>
+              <div class="col-md-2" id="timer"> </div>
 
-                <input id="strtBtn" class=" col-md-2 start btn-success" type="button" name="name" value="START">
-                <input id="resetBtn" class="col-md-2 btn-danger"type="button" name="resethere" value="RESET">
+                <input id="strtBtn" class=" col-md-3 start btn-success" type="button" name="name" value="START">
+                <input id="resetBtn" class="col-md-3"type="button" name="resethere" value="RESET">
             </div>
 
         </div>
@@ -42,7 +46,7 @@
 
 
             <div class="col-md-12 hiddenttext" id="topSecretDoc" style="-moz-user-select: none; -webkit-user-select: none; -ms-user-select:none; user-select:none;-o-user-select:none;" unselectable="on" onselectstart="return false;" onmousedown="return false;">
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                <p>...</p>
             </div>
 
             <div class="col-md-12 myfooter">
@@ -57,10 +61,10 @@
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title">Modal title</h4>
+            <h4 class="modal-title" id="modaltitle">Instructions</h4>
           </div>
-          <div class="modal-body">
-            <p>You are a prospective whistleblower working for the NSA, and an acolyte of Edward Snowden. Devoted, you've taken it upon yourself to unveil the dirty secrets of domestic surveilance. Using guile, cunning, and quick fingers, you are tasked with leaking as much accurate information to The Guardian as possible in the time allotted. First to 10 wins!&hellip;</p>
+          <div class="modal-body" id="instructionsmodal">
+            <p>You and your imaginary friend find an abandoned console in the woods. It beckons. As your fingers embrace the keys like long-lost lovers, you notice random quotes of text appear on the screen. Is this...some sort of test? Does it desire pinpoint reproduction? Has it no mercy? Play at your peril.</p>
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal-dialog -->
