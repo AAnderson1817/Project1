@@ -40,3 +40,8 @@
 * A button or other input that User2 can utilize to activate The Supervisor. Very much red light/green light. There is a limit on how many times this intervention can be used, as to standardize the potential difficulty across multiple parties who might be press-happy. Perhaps this intervention occurs at random intervals determined by the computer.
 * A function that measures the speed in WPM or CPS. This is displayed on screen either persistently in real time, or at the end at the "High Score" screen.
 * A function that measures the accuracy of the text
+
+###Shoutouts
+
+* Thanks to Phillipe, Garret, Roland, Conrad, Alex, Sandeep, and Kevin for their significant contributions.
+* Thank you Open Source.
