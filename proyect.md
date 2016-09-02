@@ -1,6 +1,8 @@
 # Mysterious Console: Type or Die
 
-## Objective: You are a prospective whistleblower working for the NSA, and a huge fan of Edward Snowden. He's the tops. Now that he's been exiled, his work unfinished, you have taken it upon yourself to reveal to the American people, nay, THE WORLD, that there is much more going on under the hood at their local intelligence agency. Using guile, cunning, and quick fingers, you are tasked with leaking as much information to The Guardian as possible without getting caught by your superiors. Remember, be accurate! It's bad enough you might be charged for treason--let's not add libel to your laundry list of potential legal troubles.
+## Objective: Match with 100% accuracy the text in the above field. Players have 60 seconds to accumulate as many points as possible while enduring harsh criticism from the computer before the console switches turns to Player 1's imaginary friend, and vice versa.
+
+##Controls: Players interface with the game using a mouse and keyboard. Players enter text into the designated field and, when appropriate, can use mouse clicks to interact with the menu.
 
 ### Application Needs
 
@@ -9,7 +11,7 @@
 3. The game must include the ability for a second player to participate as either the supervisor/screenwatcher, or as a second whistleblower.
 
 ### Wants
-* A consistent theme applied across all elements related to the intelligence industry and the growing role of Big Data in our everyday lives.
+* A consistent theme applied across all elements.
 * An interactive image/element similar to the features on the corners of Hearthstone boards. Ideally, it is distracting enough that the user is tempted to occasionally mess with the object, hindering their progress.
 * Multiple difficulties.
 * The ability to reverse the characters, or randomize the order of words to simulate basic encryption and improve the user's ability to independently process words/characters without auto-completing portions in their head.
